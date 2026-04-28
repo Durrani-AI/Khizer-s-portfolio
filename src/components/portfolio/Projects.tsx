@@ -26,9 +26,9 @@ const PROJECTS: Project[] = [
     badge: { label: "Featured", tone: "featured" },
   },
   {
-    name: "LockeIn",
+    name: "LockedIn",
     description:
-      "AI-powered focus and productivity platform combining LLM agents with structured workflows to help users lock into deep work sessions.",
+      "An internship and graduate application tracker built for students chasing roles in finance, tech, law, and consulting. Curated listings, status tracking (Saved → Applying → Interviewing → Offer), deadlines, and notes in a single workspace. Standout feature: AI-powered application tailoring that generates cover letters and CV edits from any job page using a saved voice profile, with every tailored document linked to the role it was written for.",
     stack: ["Next.js 14", "FastAPI", "Supabase", "Groq API", "LangChain", "Python"],
     github: "https://github.com/Durrani-AI",
     badge: { label: "In Development", tone: "wip" },
