@@ -2,8 +2,8 @@ import { useEffect, useRef, type ElementType } from "react";
 
 /**
  * Splits text into words and animates each word in (blur + slide up + fade)
- * as the element enters the viewport on scroll. A staple "scroll-aware"
- * portfolio animation.
+ * every time the element enters the viewport on scroll. Replays on every
+ * re-entry for an extra-engaging feel.
  */
 export function WordReveal({
   text,
@@ -26,29 +26,27 @@ export function WordReveal({
     const el = ref.current;
     if (!el) return;
 
-    const reveal = () => el.classList.add("wr-in");
-
-    const rect = el.getBoundingClientRect();
-    const inView =
-      rect.top < (window.innerHeight || document.documentElement.clientHeight) * 0.95 &&
-      rect.bottom > 0;
-    if (inView) {
-      reveal();
-      return;
-    }
-
     const io = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            reveal();
-            io.unobserve(el);
+            el.classList.add("wr-in");
+          } else {
+            el.classList.remove("wr-in");
           }
         });
       },
       { threshold: 0.15, rootMargin: "0px 0px -10% 0px" },
     );
     io.observe(el);
+
+    // If already in view on mount, reveal immediately.
+    const rect = el.getBoundingClientRect();
+    const inView =
+      rect.top < (window.innerHeight || document.documentElement.clientHeight) * 0.95 &&
+      rect.bottom > 0;
+    if (inView) el.classList.add("wr-in");
+
     return () => io.disconnect();
   }, []);
 

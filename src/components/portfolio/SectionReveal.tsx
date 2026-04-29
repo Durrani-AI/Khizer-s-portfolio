@@ -17,29 +17,37 @@ export function SectionReveal({
     const el = ref.current;
     if (!el) return;
 
-    // If already in viewport on mount (e.g. hero), reveal immediately.
-    const rect = el.getBoundingClientRect();
-    const inView =
-      rect.top < (window.innerHeight || document.documentElement.clientHeight) &&
-      rect.bottom > 0;
-    if (inView) {
-      const t = setTimeout(() => el.classList.add("is-visible"), delay);
-      return () => clearTimeout(t);
-    }
+    let timeout: ReturnType<typeof setTimeout> | null = null;
 
     const io = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            setTimeout(() => el.classList.add("is-visible"), delay);
-            io.unobserve(el);
+            if (timeout) clearTimeout(timeout);
+            timeout = setTimeout(() => el.classList.add("is-visible"), delay);
+          } else {
+            if (timeout) clearTimeout(timeout);
+            el.classList.remove("is-visible");
           }
         });
       },
       { threshold: 0.05, rootMargin: "0px 0px -40px 0px" },
     );
     io.observe(el);
-    return () => io.disconnect();
+
+    // Reveal immediately if already in viewport on mount.
+    const rect = el.getBoundingClientRect();
+    const inView =
+      rect.top < (window.innerHeight || document.documentElement.clientHeight) &&
+      rect.bottom > 0;
+    if (inView) {
+      timeout = setTimeout(() => el.classList.add("is-visible"), delay);
+    }
+
+    return () => {
+      io.disconnect();
+      if (timeout) clearTimeout(timeout);
+    };
   }, [delay]);
 
   const Component = Tag as any;
