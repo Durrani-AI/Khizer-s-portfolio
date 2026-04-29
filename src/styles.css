@@ -63,26 +63,26 @@
 
 :root {
   --radius: 0.75rem;
-  --background: oklch(0.13 0.005 260);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.165 0.006 260);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.165 0.006 260);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.82 0.16 210);
-  --primary-foreground: oklch(0.13 0.005 260);
-  --primary-glow: oklch(0.82 0.16 210 / 0.35);
-  --secondary: oklch(0.22 0.008 260);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.2 0.006 260);
-  --muted-foreground: oklch(0.68 0.01 260);
-  --accent: oklch(0.82 0.16 210);
-  --accent-foreground: oklch(0.13 0.005 260);
+  --background: oklch(0.11 0.002 270);
+  --foreground: oklch(0.97 0.002 270);
+  --card: oklch(0.145 0.003 270);
+  --card-foreground: oklch(0.97 0.002 270);
+  --popover: oklch(0.145 0.003 270);
+  --popover-foreground: oklch(0.97 0.002 270);
+  --primary: oklch(0.86 0.005 270);
+  --primary-foreground: oklch(0.11 0.002 270);
+  --primary-glow: oklch(0.86 0.005 270 / 0.22);
+  --secondary: oklch(0.19 0.003 270);
+  --secondary-foreground: oklch(0.97 0.002 270);
+  --muted: oklch(0.18 0.003 270);
+  --muted-foreground: oklch(0.62 0.004 270);
+  --accent: oklch(0.78 0.004 270);
+  --accent-foreground: oklch(0.11 0.002 270);
   --destructive: oklch(0.65 0.22 25);
-  --destructive-foreground: oklch(0.985 0 0);
-  --border: oklch(0.25 0.008 260);
-  --input: oklch(0.22 0.008 260);
-  --ring: oklch(0.82 0.16 210);
+  --destructive-foreground: oklch(0.97 0.002 270);
+  --border: oklch(0.24 0.003 270);
+  --input: oklch(0.2 0.003 270);
+  --ring: oklch(0.7 0.004 270);
   --chart-1: oklch(0.82 0.16 210);
   --chart-2: oklch(0.7 0.15 180);
   --chart-3: oklch(0.6 0.18 260);
@@ -177,6 +177,54 @@
       linear-gradient(to bottom, color-mix(in oklab, var(--foreground) 4%, transparent) 1px, transparent 1px);
     background-size: 56px 56px;
   }
+  .noise-bg {
+    background-image: radial-gradient(color-mix(in oklab, var(--foreground) 6%, transparent) 1px, transparent 1px);
+    background-size: 3px 3px;
+  }
+  /* Slide-in from left for skill chips */
+  @keyframes slide-in-left {
+    0% { opacity: 0; transform: translateX(-24px); filter: blur(4px); }
+    100% { opacity: 1; transform: translateX(0); filter: blur(0); }
+  }
+  .animate-slide-in-left {
+    animation: slide-in-left 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+  /* Floating orbs */
+  @keyframes float-slow {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    50% { transform: translate(20px, -30px) scale(1.05); }
+  }
+  .animate-float-slow { animation: float-slow 14s ease-in-out infinite; }
+  @keyframes float-slow-2 {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    50% { transform: translate(-30px, 20px) scale(1.08); }
+  }
+  .animate-float-slow-2 { animation: float-slow-2 18s ease-in-out infinite; }
+  /* Aurora sweep */
+  @keyframes aurora {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+  .text-aurora {
+    background: linear-gradient(120deg, oklch(0.97 0.002 270), oklch(0.6 0.004 270), oklch(0.97 0.002 270));
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: aurora 8s ease infinite;
+  }
+  /* Marquee */
+  @keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  .animate-marquee { animation: marquee 40s linear infinite; }
+  /* Magnetic / lift */
+  .lift {
+    transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.4s ease, border-color 0.3s ease;
+  }
+  .lift:hover { transform: translateY(-4px); }
   @keyframes blink-caret {
     0%, 50% { opacity: 1; }
     51%, 100% { opacity: 0; }
