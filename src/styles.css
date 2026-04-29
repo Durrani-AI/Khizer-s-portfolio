@@ -98,6 +98,29 @@
   --sidebar-ring: oklch(0.82 0.16 210);
 }
 
+.light {
+  --background: oklch(0.985 0.002 270);
+  --foreground: oklch(0.16 0.005 270);
+  --card: oklch(0.97 0.002 270);
+  --card-foreground: oklch(0.16 0.005 270);
+  --popover: oklch(0.97 0.002 270);
+  --popover-foreground: oklch(0.16 0.005 270);
+  --primary: oklch(0.22 0.005 270);
+  --primary-foreground: oklch(0.985 0.002 270);
+  --primary-glow: oklch(0.22 0.005 270 / 0.18);
+  --secondary: oklch(0.94 0.003 270);
+  --secondary-foreground: oklch(0.16 0.005 270);
+  --muted: oklch(0.94 0.003 270);
+  --muted-foreground: oklch(0.45 0.005 270);
+  --accent: oklch(0.3 0.005 270);
+  --accent-foreground: oklch(0.985 0.002 270);
+  --destructive: oklch(0.6 0.22 25);
+  --destructive-foreground: oklch(0.985 0.002 270);
+  --border: oklch(0.88 0.003 270);
+  --input: oklch(0.92 0.003 270);
+  --ring: oklch(0.4 0.005 270);
+}
+
 .dark {
   --background: oklch(0.129 0.042 264.695);
   --foreground: oklch(0.984 0.003 247.858);
@@ -237,5 +260,30 @@
     margin-left: 4px;
     vertical-align: text-bottom;
     animation: blink-caret 1s steps(1) infinite;
+  }
+
+  /* Word-by-word scroll reveal */
+  .word-reveal { display: inline; }
+  .wr-word {
+    display: inline-block;
+    overflow: hidden;
+    vertical-align: bottom;
+    line-height: 1.15;
+  }
+  .wr-inner {
+    display: inline-block;
+    transform: translateY(110%);
+    opacity: 0;
+    filter: blur(6px);
+    transition:
+      transform 0.85s cubic-bezier(0.22, 1, 0.36, 1),
+      opacity 0.85s cubic-bezier(0.22, 1, 0.36, 1),
+      filter 0.85s cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: transform, opacity, filter;
+  }
+  .word-reveal.wr-in .wr-inner {
+    transform: translateY(0);
+    opacity: 1;
+    filter: blur(0);
   }
 }
