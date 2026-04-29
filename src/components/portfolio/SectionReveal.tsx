@@ -16,6 +16,17 @@ export function SectionReveal({
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
+
+    // If already in viewport on mount (e.g. hero), reveal immediately.
+    const rect = el.getBoundingClientRect();
+    const inView =
+      rect.top < (window.innerHeight || document.documentElement.clientHeight) &&
+      rect.bottom > 0;
+    if (inView) {
+      const t = setTimeout(() => el.classList.add("is-visible"), delay);
+      return () => clearTimeout(t);
+    }
+
     const io = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -25,7 +36,7 @@ export function SectionReveal({
           }
         });
       },
-      { threshold: 0.12, rootMargin: "0px 0px -60px 0px" },
+      { threshold: 0.05, rootMargin: "0px 0px -40px 0px" },
     );
     io.observe(el);
     return () => io.disconnect();
