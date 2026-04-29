@@ -1,4 +1,5 @@
 import { SectionReveal } from "./SectionReveal";
+import { WordReveal } from "./WordReveal";
 
 const CERTS = [
   { name: "Career Essentials in Generative AI", issuer: "Microsoft & LinkedIn" },
@@ -19,7 +20,7 @@ export function Certifications() {
             03 — Credentials
           </p>
           <h2 className="mt-4 text-3xl font-semibold tracking-tight sm:text-4xl">
-            Certifications
+            <WordReveal text="Certifications" />
           </h2>
         </SectionReveal>
 

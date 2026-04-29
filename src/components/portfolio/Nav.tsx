@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Send, Code2 } from "lucide-react";
+import { ThemeToggle } from "./ThemeToggle";
 
 const LINKS = [
   { href: "#projects", label: "Projects" },
@@ -42,6 +43,7 @@ export function Nav() {
             </a>
           ))}
         </div>
+        <ThemeToggle />
         <a
           href="#contact"
           className="flex h-8 w-8 items-center justify-center rounded-full text-muted-foreground transition-colors hover:text-primary"

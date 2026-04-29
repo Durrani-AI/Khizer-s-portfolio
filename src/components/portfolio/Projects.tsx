@@ -1,5 +1,6 @@
 import { ArrowUpRight, Github } from "lucide-react";
 import { SectionReveal } from "./SectionReveal";
+import { WordReveal } from "./WordReveal";
 
 type Project = {
   name: string;
@@ -44,7 +45,7 @@ export function Projects() {
             02 — Selected Work
           </p>
           <h2 className="mt-4 text-3xl font-semibold tracking-tight sm:text-4xl md:text-5xl">
-            Projects I've <span className="font-serif-italic text-muted-foreground">shipped</span>.
+            <WordReveal text="Projects I've shipped." />
           </h2>
         </SectionReveal>
 

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Code2, Server, Layout, Database, Sparkles, Wrench, BarChart3, Globe } from "lucide-react";
 import { SectionReveal } from "./SectionReveal";
+import { WordReveal } from "./WordReveal";
 
 type Category = {
   key: string;
@@ -86,18 +87,16 @@ export function About() {
             <span className="text-foreground">01</span> — About
           </p>
           <h2 className="mt-4 max-w-3xl text-3xl font-semibold tracking-tight sm:text-4xl md:text-5xl">
-            A second-year CS student{" "}
-            <span className="font-serif-italic text-aurora">shipping real systems</span>{" "}
-            alongside the degree.
+            <WordReveal text="A second-year CS student shipping real systems alongside the degree." />
           </h2>
         </SectionReveal>
 
         <SectionReveal delay={120}>
           <p className="mt-8 max-w-3xl text-base leading-relaxed text-muted-foreground sm:text-lg">
-            I'm a second-year Computer Science student at Middlesex University London who builds
-            and ships real production systems alongside my degree. My focus is backend
-            development, AI integration, and full-stack engineering. Currently seeking internship
-            opportunities where I can contribute technically from day one.
+            <WordReveal
+              text="I'm a second-year Computer Science student at Middlesex University London who builds and ships real production systems alongside my degree. My focus is backend development, AI integration, and full-stack engineering. Currently seeking internship opportunities where I can contribute technically from day one."
+              stagger={25}
+            />
           </p>
         </SectionReveal>
 

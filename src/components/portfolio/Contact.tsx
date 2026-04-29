@@ -2,6 +2,7 @@ import { useState, type FormEvent } from "react";
 import { Mail, Linkedin, Github, ArrowRight } from "lucide-react";
 import { toast } from "sonner";
 import { SectionReveal } from "./SectionReveal";
+import { WordReveal } from "./WordReveal";
 
 export function Contact() {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
@@ -24,10 +25,10 @@ export function Contact() {
             04 — Contact
           </p>
           <h2 className="mt-4 text-3xl font-semibold tracking-tight sm:text-4xl md:text-5xl">
-            Get In <span className="font-serif-italic text-muted-foreground">Touch</span>
+            <WordReveal text="Get In Touch" />
           </h2>
           <p className="mt-4 max-w-2xl text-base text-muted-foreground sm:text-lg">
-            Open to internship opportunities, collaborations, and conversations.
+            <WordReveal text="Open to internship opportunities, collaborations, and conversations." stagger={40} />
           </p>
         </SectionReveal>
 
