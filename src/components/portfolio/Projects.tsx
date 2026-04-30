@@ -14,14 +14,14 @@ const PROJECTS: Project[] = [
   {
     name: "Terra Scenik",
     description:
-      "A full-stack social media platform with authentication, follows, feeds, likes, search, and full post management. Built end to end from database to frontend.",
+      "A full-stack social media platform with authentication, follows, feeds, likes, search, and full post management, built end to end from database to frontend.",
     stack: ["Express.js", "MongoDB Atlas", "AJAX", "Multer", "Node.js"],
     github: "https://github.com/Durrani-AI",
   },
   {
     name: "Codeverse",
     description:
-      "An AI-powered technical interview platform where users practice coding questions in specific programming languages. The AI generates questions, evaluates answers, and gives personalised feedback in real time.",
+      "An AI-powered technical interview platform where users practice coding questions in specific programming languages. The AI generates questions, evaluates answers, and provides personalized feedback in real time.",
     stack: ["FastAPI", "Next.js 14", "PostgreSQL", "Groq API", "Ollama", "TypeScript", "Tailwind CSS", "CI/CD"],
     github: "https://github.com/Durrani-AI",
     badge: { label: "Featured", tone: "featured" },
@@ -29,7 +29,7 @@ const PROJECTS: Project[] = [
   {
     name: "LockedIn",
     description:
-      "An internship and graduate application tracker built for students chasing roles in finance, tech, law, and consulting. Curated listings, status tracking (Saved → Applying → Interviewing → Offer), deadlines, and notes in a single workspace. Standout feature: AI-powered application tailoring that generates cover letters and CV edits from any job page using a saved voice profile, with every tailored document linked to the role it was written for.",
+      "An internship and graduate application tracker built for students pursuing roles in finance, tech, law, and consulting. It combines curated listings, status tracking (Saved → Applying → Interviewing → Offer), deadlines, and notes in a single workspace. A standout feature is AI-powered application tailoring that generates cover letters and CV edits from any job page using a saved voice profile, with every tailored document linked to the role it was written for.",
     stack: ["Next.js 14", "FastAPI", "Supabase", "Groq API", "LangChain", "Python"],
     github: "https://github.com/Durrani-AI",
     badge: { label: "In Development", tone: "wip" },

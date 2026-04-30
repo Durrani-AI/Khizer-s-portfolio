@@ -259,6 +259,9 @@
 
   /* Word-by-word scroll reveal */
   .word-reveal { display: inline; }
+  .wr-space {
+    white-space: pre;
+  }
   .wr-word {
     display: inline-block;
     overflow: hidden;

@@ -50,22 +50,32 @@ export function WordReveal({
     return () => io.disconnect();
   }, []);
 
-  const words = text.split(" ");
+  const tokens = text.split(/(\s+)/).filter(Boolean);
   const Component = Tag as any;
+  let wordIndex = 0;
 
   return (
     <Component ref={ref as any} className={`word-reveal ${className}`} aria-label={text}>
-      {words.map((w, i) => (
-        <span key={i} className="wr-word" aria-hidden="true">
-          <span
-            className="wr-inner"
-            style={{ transitionDelay: `${startDelay + i * stagger}ms` }}
-          >
-            {w}
+      {tokens.map((token, i) => {
+        if (/^\s+$/.test(token)) {
+          return (
+            <span key={i} className="wr-space" aria-hidden="true">
+              {token}
+            </span>
+          );
+        }
+
+        const delay = startDelay + wordIndex * stagger;
+        wordIndex += 1;
+
+        return (
+          <span key={i} className="wr-word" aria-hidden="true">
+            <span className="wr-inner" style={{ transitionDelay: `${delay}ms` }}>
+              {token}
+            </span>
           </span>
-          {i < words.length - 1 ? " " : ""}
-        </span>
-      ))}
+        );
+      })}
     </Component>
   );
 }

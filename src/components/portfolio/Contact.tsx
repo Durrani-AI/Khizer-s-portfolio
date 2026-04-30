@@ -25,7 +25,7 @@ export function Contact() {
             04 — Contact
           </p>
           <h2 className="mt-4 text-3xl font-semibold tracking-tight sm:text-4xl md:text-5xl">
-            <WordReveal text="Get In Touch" />
+            <WordReveal text="Get in Touch" />
           </h2>
           <p className="mt-4 max-w-2xl text-base text-muted-foreground sm:text-lg">
             <WordReveal text="Open to internship opportunities, collaborations, and conversations." stagger={40} />
