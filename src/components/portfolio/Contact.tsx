@@ -1,20 +1,95 @@
 import { useState, type FormEvent } from "react";
+import emailjs from "@emailjs/browser";
 import { Mail, Linkedin, Github, ArrowRight } from "lucide-react";
 import { toast } from "sonner";
 import { SectionReveal } from "./SectionReveal";
 import { WordReveal } from "./WordReveal";
 
+const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const CONTACT_MESSAGE_MIN_LENGTH = 20;
+const CONTACT_COOLDOWN_MS = 60_000;
+const CONTACT_COOLDOWN_STORAGE_KEY = "contact_form_last_sent_at";
+
+const EMAILJS_PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+const EMAILJS_SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+const EMAILJS_TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+
+function getCooldownRemainingMs() {
+  if (typeof window === "undefined") return 0;
+
+  const raw = window.localStorage.getItem(CONTACT_COOLDOWN_STORAGE_KEY);
+  const lastSentAt = Number(raw || "0");
+  if (!Number.isFinite(lastSentAt) || lastSentAt <= 0) return 0;
+
+  return Math.max(0, lastSentAt + CONTACT_COOLDOWN_MS - Date.now());
+}
+
 export function Contact() {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const onSubmit = (e: FormEvent) => {
+  const onSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    if (!form.name.trim() || !form.email.trim() || !form.message.trim()) {
+
+    const name = form.name.trim();
+    const email = form.email.trim();
+    const message = form.message.trim();
+
+    if (!name || !email || !message) {
       toast.error("Please fill in all fields.");
       return;
     }
-    toast.success("Thanks — I'll get back to you shortly.");
-    setForm({ name: "", email: "", message: "" });
+
+    if (!EMAIL_REGEX.test(email)) {
+      toast.error("Please enter a valid email address.");
+      return;
+    }
+
+    if (message.length < CONTACT_MESSAGE_MIN_LENGTH) {
+      toast.error(`Message must be at least ${CONTACT_MESSAGE_MIN_LENGTH} characters.`);
+      return;
+    }
+
+    const remainingCooldownMs = getCooldownRemainingMs();
+    if (remainingCooldownMs > 0) {
+      const remainingSeconds = Math.ceil(remainingCooldownMs / 1000);
+      toast.error(`Please wait ${remainingSeconds}s before sending another message.`);
+      return;
+    }
+
+    if (!EMAILJS_PUBLIC_KEY || !EMAILJS_SERVICE_ID || !EMAILJS_TEMPLATE_ID) {
+      toast.error("Contact form is not configured yet. Add EmailJS environment variables.");
+      return;
+    }
+
+    try {
+      setIsSubmitting(true);
+
+      await emailjs.send(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        {
+          from_name: name,
+          from_email: email,
+          message,
+          reply_to: email,
+        },
+        {
+          publicKey: EMAILJS_PUBLIC_KEY,
+        },
+      );
+
+      if (typeof window !== "undefined") {
+        window.localStorage.setItem(CONTACT_COOLDOWN_STORAGE_KEY, String(Date.now()));
+      }
+
+      toast.success("Thanks - I'll get back to you shortly.");
+      setForm({ name: "", email: "", message: "" });
+    } catch {
+      toast.error("Couldn't send your message. Please try again in a moment.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -52,7 +127,7 @@ export function Contact() {
               <a
                 href="https://www.linkedin.com/in/khizer-ahmed-durrani-997947356/"
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 className="group flex items-center gap-4 rounded-xl border border-border/60 bg-card/50 p-5 transition-colors hover:border-primary/40"
               >
                 <span className="flex h-10 w-10 items-center justify-center rounded-full bg-secondary/60 text-primary">
@@ -68,7 +143,7 @@ export function Contact() {
               <a
                 href="https://github.com/Durrani-AI"
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 className="group flex items-center gap-4 rounded-xl border border-border/60 bg-card/50 p-5 transition-colors hover:border-primary/40"
               >
                 <span className="flex h-10 w-10 items-center justify-center rounded-full bg-secondary/60 text-primary">
@@ -129,9 +204,10 @@ export function Contact() {
               </div>
               <button
                 type="submit"
-                className="group inline-flex w-full items-center justify-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-medium text-primary-foreground transition-all duration-300 hover:shadow-[0_0_30px_4px_var(--primary-glow)]"
+                disabled={isSubmitting}
+                className="group inline-flex w-full items-center justify-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-medium text-primary-foreground transition-all duration-300 hover:shadow-[0_0_30px_4px_var(--primary-glow)] disabled:cursor-not-allowed disabled:opacity-70"
               >
-                Send Message
+                {isSubmitting ? "Sending..." : "Send Message"}
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
               </button>
             </form>

@@ -93,7 +93,7 @@ export function Projects() {
                   <a
                     href={p.github}
                     target="_blank"
-                    rel="noreferrer"
+                    rel="noopener noreferrer"
                     className="inline-flex h-10 shrink-0 items-center gap-2 self-start rounded-full border border-border bg-secondary/60 px-4 text-sm text-foreground transition-colors hover:border-primary/40 hover:text-primary"
                   >
                     <Github className="h-4 w-4" />

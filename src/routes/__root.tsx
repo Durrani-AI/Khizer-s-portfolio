@@ -2,6 +2,12 @@ import { Outlet, Link, createRootRoute, HeadContent, Scripts } from "@tanstack/r
 
 import appCss from "../styles.css?url";
 
+const siteUrl = (import.meta.env.VITE_SITE_URL || "https://example.com").replace(/\/$/, "");
+const ogImageUrl = import.meta.env.VITE_OG_IMAGE_URL || `${siteUrl}/og-image.png`;
+const pageTitle = "Khizer Durrani - Full Stack Developer";
+const pageDescription =
+  "Khizer Durrani is a full-stack developer and CS student at Middlesex University London, building production-grade systems across backend, AI integration, and modern web development.";
+
 function NotFoundComponent() {
   return (
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
@@ -29,15 +35,25 @@ export const Route = createRootRoute({
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Khizer Durrani — Full Stack Developer" },
-      { name: "description", content: "Khizer Durrani — Full Stack Developer & CS student at Middlesex University London. I build production-grade systems that solve real problems." },
+      { title: pageTitle },
+      { name: "description", content: pageDescription },
+      { name: "keywords", content: "Khizer Durrani, full-stack developer, portfolio, React, TypeScript, backend, AI integration" },
+      { name: "robots", content: "index, follow" },
       { name: "author", content: "Khizer Durrani" },
-      { property: "og:title", content: "Khizer Durrani — Full Stack Developer" },
-      { property: "og:description", content: "I build production-grade systems that solve real problems. Backend, AI integration, full-stack engineering." },
+      { property: "og:title", content: pageTitle },
+      { property: "og:description", content: pageDescription },
       { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary" },
+      { property: "og:url", content: siteUrl },
+      { property: "og:site_name", content: "Khizer Durrani Portfolio" },
+      { property: "og:image", content: ogImageUrl },
+      { property: "og:image:alt", content: "Khizer Durrani portfolio preview" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: pageTitle },
+      { name: "twitter:description", content: pageDescription },
+      { name: "twitter:image", content: ogImageUrl },
     ],
     links: [
+      { rel: "canonical", href: siteUrl },
       { rel: "stylesheet", href: appCss },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
