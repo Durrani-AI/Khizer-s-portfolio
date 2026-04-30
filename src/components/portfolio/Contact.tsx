@@ -50,7 +50,7 @@ export function Contact() {
               </a>
 
               <a
-                href="https://linkedin.com"
+                href="https://www.linkedin.com/in/khizer-ahmed-durrani-997947356/"
                 target="_blank"
                 rel="noreferrer"
                 className="group flex items-center gap-4 rounded-xl border border-border/60 bg-card/50 p-5 transition-colors hover:border-primary/40"

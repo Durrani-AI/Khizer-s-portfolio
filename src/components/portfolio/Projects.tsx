@@ -42,7 +42,7 @@ export function Projects() {
       <div className="mx-auto max-w-5xl">
         <SectionReveal>
           <p className="text-[11px] font-medium uppercase tracking-[0.22em] text-primary">
-            02 — Selected Work
+            02 — My Projects
           </p>
           <h2 className="mt-4 text-3xl font-semibold tracking-tight sm:text-4xl md:text-5xl">
             <WordReveal text="Projects I've shipped." />

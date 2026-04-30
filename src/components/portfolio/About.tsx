@@ -23,7 +23,7 @@ const CATEGORIES: Category[] = [
     key: "frontend",
     label: "Frontend",
     icon: Layout,
-    blurb: "Building fast, accessible interfaces with modern React.",
+    blurb: "Building fast, accessible interfaces with React.",
     items: ["Next.js 14", "React", "Tailwind CSS", "AJAX"],
   },
   {
@@ -84,17 +84,17 @@ export function About() {
       <div className="mx-auto max-w-6xl">
         <SectionReveal>
           <p className="text-[11px] font-medium uppercase tracking-[0.22em] text-muted-foreground">
-            <span className="text-foreground">01</span> — About
+            <span className="text-foreground">01</span> — About Me
           </p>
           <h2 className="mt-4 max-w-3xl text-3xl font-semibold tracking-tight sm:text-4xl md:text-5xl">
-            <WordReveal text="A second-year CS student shipping real systems alongside my degree." />
+            <WordReveal text=" Student by title. Developer by practice. Building scalable, real-world solutions." />
           </h2>
         </SectionReveal>
 
         <SectionReveal delay={120}>
           <p className="mt-8 max-w-3xl text-base leading-relaxed text-muted-foreground sm:text-lg">
             <WordReveal
-              text="I'm a second-year Computer Science student at Middlesex University London, and I build and ship production systems alongside my degree. My focus is backend development, AI integration, and full-stack engineering. I'm currently seeking internship opportunities where I can contribute from day one."
+              text=" Hi! My name is Khizer Ahmed Durrani. A Computer Science student at Middlesex University London who treats academia as a launchpad, not a waiting room. I specialize in end-to-end development, architecting robust backend systems while consistently going the extra mile on the frontend to craft exceptional, pixel-perfect UI/UX. I thrive in fast-paced environments, turning complex problems into deployed, high-impact solutions swiftly."
               stagger={25}
             />
           </p>
@@ -106,10 +106,10 @@ export function About() {
             <div className="mb-8 flex items-end justify-between">
               <div>
                 <p className="text-[11px] font-medium uppercase tracking-[0.22em] text-muted-foreground">
-                  Toolkit
+                  
                 </p>
                 <h3 className="mt-2 text-2xl font-semibold tracking-tight sm:text-3xl">
-                  Pick a category.
+                  My Skillsets
                 </h3>
               </div>
               <div className="hidden text-xs text-muted-foreground sm:block">
