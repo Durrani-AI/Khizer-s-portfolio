@@ -1,4 +1,5 @@
 import { createMiddleware, createStart } from "@tanstack/react-start";
+import { setResponseHeader } from "@tanstack/react-start/server";
 
 const contentSecurityPolicy = [
   "default-src 'self'",
@@ -23,26 +24,19 @@ const securityHeadersMiddleware = createMiddleware().server(async ({ next, reque
     return Response.redirect(url.toString(), 301);
   }
 
-  const response = await next();
-  const headers = new Headers(response.headers);
-
-  headers.set("Content-Security-Policy", contentSecurityPolicy);
-  headers.set("Referrer-Policy", "strict-origin-when-cross-origin");
-  headers.set("X-Content-Type-Options", "nosniff");
-  headers.set("X-Frame-Options", "DENY");
-  headers.set("Permissions-Policy", "camera=(), microphone=(), geolocation=()");
-  headers.set("Cross-Origin-Opener-Policy", "same-origin");
-  headers.set("Cross-Origin-Resource-Policy", "same-origin");
+  setResponseHeader("Content-Security-Policy", contentSecurityPolicy);
+  setResponseHeader("Referrer-Policy", "strict-origin-when-cross-origin");
+  setResponseHeader("X-Content-Type-Options", "nosniff");
+  setResponseHeader("X-Frame-Options", "DENY");
+  setResponseHeader("Permissions-Policy", "camera=(), microphone=(), geolocation=()");
+  setResponseHeader("Cross-Origin-Opener-Policy", "same-origin");
+  setResponseHeader("Cross-Origin-Resource-Policy", "same-origin");
 
   if (!isLocalhost && url.protocol === "https:") {
-    headers.set("Strict-Transport-Security", "max-age=63072000; includeSubDomains; preload");
+    setResponseHeader("Strict-Transport-Security", "max-age=63072000; includeSubDomains; preload");
   }
 
-  return new Response(response.body, {
-    status: response.status,
-    statusText: response.statusText,
-    headers,
-  });
+  return next();
 });
 
 export const startInstance = createStart(() => ({

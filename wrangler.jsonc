@@ -1,7 +1,18 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "tanstack-start-app",
+  "name": "khizers-portfolio",
+  "workers_dev": true,
   "compatibility_date": "2025-09-24",
   "compatibility_flags": ["nodejs_compat"],
+  "routes": [
+    {
+      "pattern": "khid-hr.dev",
+      "custom_domain": true
+    },
+    {
+      "pattern": "www.khid-hr.dev",
+      "custom_domain": true
+    }
+  ],
   "main": "@tanstack/react-start/server-entry",
 }

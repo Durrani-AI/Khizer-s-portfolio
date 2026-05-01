@@ -11,7 +11,11 @@ export default defineConfig(({ command }) => ({
 		tanstackStart(),
 		react(),
 		tailwindcss(),
-		...(command === "build" ? [cloudflare()] : []),
+		...(command === "build" ? [cloudflare({
+			viteEnvironment: {
+				name: "ssr",
+			},
+		})] : []),
 	],
 	resolve: {
 		// Keep a single React runtime to avoid subtle hydration/render mismatches.
