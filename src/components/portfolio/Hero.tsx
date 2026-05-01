@@ -1,4 +1,3 @@
-import { ArrowRight } from "lucide-react";
 import { Typewriter } from "./Typewriter";
 import { SectionReveal } from "./SectionReveal";
 
@@ -14,10 +13,6 @@ export function Hero() {
 
       <div className="relative z-10 mx-auto flex max-w-3xl flex-col items-center text-center">
         <SectionReveal>
-          <div></div>
-        </SectionReveal>
-
-        <SectionReveal delay={80}>
           <h1 className="mt-8 text-5xl font-semibold tracking-tight text-foreground sm:text-7xl md:text-8xl">
             <span className="font-serif-italic text-foreground/95">Khizer A Durrani</span>
           </h1>
@@ -26,14 +21,6 @@ export function Hero() {
         <SectionReveal delay={160}>
           <div className="mt-6 h-8 text-lg text-muted-foreground sm:text-xl">
             <Typewriter />
-          </div>
-        </SectionReveal>
-
-        
-
-        <SectionReveal delay={320}>
-          <div className="mt-10 flex flex-col items-center gap-3 sm:flex-row sm:gap-4">
-            
           </div>
         </SectionReveal>
       </div>

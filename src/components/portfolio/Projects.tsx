@@ -39,7 +39,7 @@ const PROJECTS: Project[] = [
 export function Projects() {
   return (
     <section id="projects" className="relative px-6 py-32">
-      <div className="mx-auto max-w-5xl">
+      <div className="mx-auto max-w-6xl">
         <SectionReveal>
           <p className="text-[11px] font-medium uppercase tracking-[0.22em] text-primary">
             02 — My Projects

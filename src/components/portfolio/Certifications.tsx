@@ -14,7 +14,7 @@ const CERTS = [
 export function Certifications() {
   return (
     <section id="certifications" className="relative px-6 py-32">
-      <div className="mx-auto max-w-5xl">
+      <div className="mx-auto max-w-6xl">
         <SectionReveal>
           <p className="text-[11px] font-medium uppercase tracking-[0.22em] text-primary">
             03 — Credentials

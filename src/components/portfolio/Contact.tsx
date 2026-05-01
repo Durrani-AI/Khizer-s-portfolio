@@ -94,7 +94,7 @@ export function Contact() {
 
   return (
     <section id="contact" className="relative px-6 py-32">
-      <div className="mx-auto max-w-5xl">
+      <div className="mx-auto max-w-6xl">
         <SectionReveal>
           <p className="text-[11px] font-medium uppercase tracking-[0.22em] text-primary">
             04 — Contact
