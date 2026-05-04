@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" fill="none">
+  <rect width="1600" height="900" fill="#121212"/>
+  <g transform="translate(282 438)">
+    <text
+      x="0"
+      y="0"
+      fill="#F1F1F1"
+      font-family="Inter, Segoe UI, Arial, sans-serif"
+      font-size="110"
+      font-weight="700"
+      letter-spacing="-4"
+    >Terra Scenik</text>
+    <text
+      x="0"
+      y="120"
+      fill="#B8C0CE"
+      font-family="Inter, Segoe UI, Arial, sans-serif"
+      font-size="34"
+      font-weight="400"
+      letter-spacing="-0.6"
+    >Share your best take on Nature</text>
+  </g>
+</svg>

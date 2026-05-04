@@ -9,7 +9,6 @@ type Project = {
   preview: {
     src: string;
     alt: string;
-    tint: string;
     objectPosition?: string;
   };
 };
@@ -20,10 +19,9 @@ const PROJECTS: Project[] = [
     href: "https://terra-scenik.onrender.com/",
     summary: "Full-stack social platform",
     preview: {
-      src: "/project-previews/terra-scenik.png",
+      src: "/project-previews/terra-scenik-reference.svg",
       alt: "Terra Scenik landing page screenshot",
-      tint: "from-amber-300/12 via-transparent to-transparent",
-      objectPosition: "50% 10%",
+      objectPosition: "50% 50%",
     },
   },
   {
@@ -31,10 +29,9 @@ const PROJECTS: Project[] = [
     href: "https://ai-codeverse.vercel.app/",
     summary: "AI interview platform",
     preview: {
-      src: "/project-previews/codeverse.png",
+      src: "/project-previews/codeverse-reference.svg",
       alt: "Codeverse landing page screenshot",
-      tint: "from-violet-300/12 via-transparent to-transparent",
-      objectPosition: "50% 10%",
+      objectPosition: "50% 50%",
     },
   },
   {
@@ -44,7 +41,6 @@ const PROJECTS: Project[] = [
     preview: {
       src: "/project-previews/lockedin.png",
       alt: "LockedIn landing page screenshot",
-      tint: "from-emerald-300/12 via-transparent to-transparent",
       objectPosition: "50% 10%",
     },
   },
@@ -65,11 +61,9 @@ function ProjectCard({ project }: { project: Project }) {
             src={project.preview.src}
             alt={project.preview.alt}
             loading="lazy"
-            className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+            className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.015]"
             style={{ objectPosition: project.preview.objectPosition ?? "50% 10%" }}
           />
-          <div className={`absolute inset-0 bg-gradient-to-br ${project.preview.tint}`} />
-          <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(3,4,10,0.04),rgba(3,4,10,0.22))]" />
           <div className="absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100 bg-[linear-gradient(135deg,rgba(255,255,255,0.05),transparent_40%,rgba(255,255,255,0.02))]" />
           <div className="absolute right-4 top-4 flex h-10 w-10 translate-y-1 items-center justify-center rounded-full border border-white/12 bg-black/45 text-white/90 opacity-0 backdrop-blur-md transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
             <ArrowUpRight className="h-4 w-4" />

@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" fill="none">
+  <defs>
+    <radialGradient id="bgGlow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(800 438) rotate(90) scale(332 470)">
+      <stop stop-color="#1F1737" stop-opacity="0.44"/>
+      <stop offset="1" stop-color="#0A0913" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="codeGrad" x1="386" y1="332" x2="721" y2="332" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#C0A7FF"/>
+      <stop offset="1" stop-color="#8851FF"/>
+    </linearGradient>
+    <linearGradient id="ctaGrad" x1="504" y1="596" x2="790" y2="596" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#7B38E8"/>
+      <stop offset="1" stop-color="#9143FF"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="900" fill="#0A0913"/>
+  <rect width="1600" height="900" fill="url(#bgGlow)"/>
+  <g opacity="0.5">
+    <rect x="1320" y="22" width="212" height="54" rx="27" fill="#171621" stroke="#2A2838"/>
+    <circle cx="1354" cy="49" r="5" fill="#6F6B7A"/>
+    <text x="1376" y="54" fill="#817E8E" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="15" font-weight="500">Light mode</text>
+  </g>
+  <rect x="506" y="260" width="588" height="382" rx="48" fill="#161325" opacity="0.18"/>
+  <g>
+    <text x="391" y="391" fill="url(#codeGrad)" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="122" font-weight="700" letter-spacing="-6">Code</text>
+    <text x="722" y="391" fill="#F1F1F4" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="122" font-weight="700" letter-spacing="-6">verse</text>
+    <rect x="673" y="423" width="121" height="2" rx="1" fill="#6E42D6" opacity="0.64"/>
+  </g>
+  <g>
+    <text x="800" y="515" text-anchor="middle" fill="#6F6B7C" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="28" font-weight="500">No</text>
+    <rect x="835" y="487" width="4" height="35" rx="2" fill="#8D5CFF"/>
+  </g>
+  <g>
+    <rect x="493" y="568" width="288" height="74" rx="16" fill="url(#ctaGrad)"/>
+    <text x="601" y="614" fill="#FFFFFF" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="24" font-weight="700">Get Started</text>
+    <path d="M713 604H739" stroke="white" stroke-width="3" stroke-linecap="round"/>
+    <path d="M728 593L739 604L728 615" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="806" y="568" width="183" height="74" rx="16" fill="none" stroke="#2C2839" stroke-width="2"/>
+    <text x="872" y="614" fill="#EFEFF3" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="24" font-weight="700">Sign In</text>
+  </g>
+</svg>
