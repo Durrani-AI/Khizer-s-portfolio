@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
-import { Send, Code2 } from "lucide-react";
+import { Code2 } from "lucide-react";
 import { ThemeToggle } from "./ThemeToggle";
 
 const LINKS = [
-  { href: "#projects", label: "Projects" },
   { href: "#about", label: "About" },
+  { href: "#projects", label: "Projects" },
   { href: "#contact", label: "Contact" },
 ];
 
@@ -44,13 +44,6 @@ export function Nav() {
           ))}
         </div>
         <ThemeToggle />
-        <a
-          href="#contact"
-          className="flex h-8 w-8 items-center justify-center rounded-full text-muted-foreground transition-colors hover:text-primary"
-          aria-label="Contact"
-        >
-          <Send className="h-4 w-4" />
-        </a>
       </nav>
     </header>
   );

@@ -5,15 +5,15 @@ export function Hero() {
   return (
     <section
       id="hero"
-      className="relative flex min-h-[100svh] items-center justify-center overflow-hidden px-6 pt-32"
+      className="relative flex min-h-[100svh] items-center justify-center overflow-hidden px-6 pt-20 md:pt-24"
     >
       <div className="pointer-events-none absolute inset-0 grid-bg opacity-40 [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_30%,transparent_75%)]" />
       <div className="pointer-events-none absolute inset-0 hero-glow" />
       <div className="pointer-events-none absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-background to-transparent" />
 
-      <div className="relative z-10 mx-auto flex max-w-3xl flex-col items-center text-center">
+      <div className="relative z-10 mx-auto flex max-w-3xl -translate-y-10 flex-col items-center text-center sm:-translate-y-12 md:-translate-y-16">
         <SectionReveal>
-          <h1 className="mt-8 text-5xl font-semibold tracking-tight text-foreground sm:text-7xl md:text-8xl">
+          <h1 className="text-5xl font-semibold tracking-tight text-foreground sm:text-7xl md:text-8xl">
             <span className="font-serif-italic text-foreground/95">Khizer A Durrani</span>
           </h1>
         </SectionReveal>
