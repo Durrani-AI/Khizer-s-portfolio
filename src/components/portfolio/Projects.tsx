@@ -23,7 +23,7 @@ const PROJECTS: Project[] = [
       src: "/project-previews/terra-scenik.png",
       alt: "Terra Scenik landing page screenshot",
       tint: "from-amber-300/12 via-transparent to-transparent",
-      objectPosition: "50% 18%",
+      objectPosition: "50% 10%",
     },
   },
   {
@@ -34,7 +34,7 @@ const PROJECTS: Project[] = [
       src: "/project-previews/codeverse.png",
       alt: "Codeverse landing page screenshot",
       tint: "from-violet-300/12 via-transparent to-transparent",
-      objectPosition: "50% 14%",
+      objectPosition: "50% 10%",
     },
   },
   {
