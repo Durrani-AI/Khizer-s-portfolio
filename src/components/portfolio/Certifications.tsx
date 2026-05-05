@@ -22,6 +22,7 @@ export function Certifications() {
           <h2 className="mt-4 text-3xl font-semibold tracking-tight sm:text-4xl">
             <WordReveal text="Certifications" />
           </h2>
+          <div className="mt-3 h-px w-16 bg-gradient-to-r from-transparent via-primary to-transparent opacity-80" />
         </SectionReveal>
 
         <SectionReveal delay={120}>

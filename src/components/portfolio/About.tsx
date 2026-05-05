@@ -89,6 +89,7 @@ export function About() {
           <h2 className="mt-4 max-w-3xl text-3xl font-semibold tracking-tight sm:text-4xl md:text-5xl">
             <WordReveal text="Student by title. Developer by practice. Building scalable, real-world solutions." />
           </h2>
+          <div className="mt-3 h-px w-16 bg-gradient-to-r from-transparent via-primary to-transparent opacity-80" />
         </SectionReveal>
 
         <SectionReveal delay={120}>

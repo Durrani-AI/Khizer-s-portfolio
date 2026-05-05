@@ -102,6 +102,7 @@ export function Contact() {
           <h2 className="mt-4 text-3xl font-semibold tracking-tight sm:text-4xl md:text-5xl">
             <WordReveal text="Get in Touch" />
           </h2>
+          <div className="mt-3 h-px w-16 bg-gradient-to-r from-transparent via-primary to-transparent opacity-80" />
           <p className="mt-4 max-w-2xl text-base text-muted-foreground sm:text-lg">
             <WordReveal text="Open to internship opportunities, collaborations, and conversations." stagger={40} />
           </p>
