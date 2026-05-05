@@ -2,7 +2,8 @@ import { useEffect, useState } from "react";
 
 const PHRASES = [
   "Full Stack Developer",
-  "CS Student at Middlesex University London",
+  "Frontend Expert",
+  "AI Integrator",
 ];
 
 export function Typewriter() {
