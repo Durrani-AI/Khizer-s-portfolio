@@ -89,7 +89,7 @@ export function About() {
           <h2 className="mt-4 max-w-3xl text-3xl font-semibold tracking-tight sm:text-4xl md:text-5xl">
             <WordReveal text="Student by title. Developer by practice. Building scalable, real-world solutions." />
           </h2>
-          <div className="mt-3 h-px w-16 bg-gradient-to-r from-transparent via-primary to-transparent opacity-80" />
+        
         </SectionReveal>
 
         <SectionReveal delay={120}>
@@ -109,6 +109,7 @@ export function About() {
                 <h3 className="mt-2 text-2xl font-semibold tracking-tight sm:text-3xl">
                   My Skillsets
                 </h3>
+                <div className="mt-3 h-px w-42 bg-gradient-to-r from-transparent via-primary to-transparent opacity-80" />
               </div>
               <div className="hidden text-xs text-muted-foreground sm:block">
                 {String(CATEGORIES.findIndex((c) => c.key === active) + 1).padStart(2, "0")} /{" "}
