@@ -56,6 +56,13 @@ function getEmailjsFailureMessage(error: unknown) {
   return "Couldn't send the form here. Opening your email app instead.";
 }
 
+function getContactTitle(message: string) {
+  const normalized = message.replace(/\s+/g, " ").trim();
+  if (!normalized) return "Portfolio contact";
+
+  return normalized.length > 60 ? `${normalized.slice(0, 57)}...` : normalized;
+}
+
 function getCooldownRemainingMs() {
   if (typeof window === "undefined") return 0;
 
@@ -108,11 +115,15 @@ export function Contact() {
 
     try {
       setIsSubmitting(true);
+      const title = getContactTitle(message);
 
       await emailjs.send(
         EMAILJS_SERVICE_ID,
         EMAILJS_TEMPLATE_ID,
         {
+          name,
+          email,
+          title,
           from_name: name,
           from_email: email,
           message,
