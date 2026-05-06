@@ -7,12 +7,54 @@ import { WordReveal } from "./WordReveal";
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const CONTACT_MESSAGE_MIN_LENGTH = 20;
+const CONTACT_MESSAGE_MIN_WORDS = 4;
+const CONTACT_MESSAGE_MIN_LETTERS = 12;
+const CONTACT_MESSAGE_MAX_REPEAT_RUN = 7;
 const CONTACT_COOLDOWN_MS = 60_000;
 const CONTACT_COOLDOWN_STORAGE_KEY = "contact_form_last_sent_at";
+const CONTACT_EMAIL = "kahmeddurrani@gmail.com";
 
 const EMAILJS_PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
 const EMAILJS_SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
 const EMAILJS_TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+
+function getMessageValidationError(message: string) {
+  if (message.length < CONTACT_MESSAGE_MIN_LENGTH) {
+    return `Message must be at least ${CONTACT_MESSAGE_MIN_LENGTH} characters.`;
+  }
+
+  const meaningfulWords = message.match(/[A-Za-z]{2,}/g) ?? [];
+  const letterCount = (message.match(/[A-Za-z]/g) ?? []).length;
+
+  if (meaningfulWords.length < CONTACT_MESSAGE_MIN_WORDS || letterCount < CONTACT_MESSAGE_MIN_LETTERS) {
+    return "Please write a clear message with a few words about why you're reaching out.";
+  }
+
+  if (new RegExp(`(.)\\1{${CONTACT_MESSAGE_MAX_REPEAT_RUN},}`).test(message)) {
+    return "Please remove repeated characters and write a clear message.";
+  }
+
+  return null;
+}
+
+function openMailFallback(name: string, email: string, message: string) {
+  if (typeof window === "undefined") return;
+
+  const subject = encodeURIComponent(`Portfolio contact from ${name}`);
+  const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\n${message}`);
+
+  window.location.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
+}
+
+function getEmailjsFailureMessage(error: unknown) {
+  if (typeof error === "object" && error !== null && "text" in error && typeof error.text === "string") {
+    if (error.text.toLowerCase().includes("service id not found")) {
+      return "The contact form is temporarily unavailable. Opening your email app instead.";
+    }
+  }
+
+  return "Couldn't send the form here. Opening your email app instead.";
+}
 
 function getCooldownRemainingMs() {
   if (typeof window === "undefined") return 0;
@@ -30,6 +72,7 @@ export function Contact() {
 
   const onSubmit = async (e: FormEvent) => {
     e.preventDefault();
+    toast.dismiss();
 
     const name = form.name.trim();
     const email = form.email.trim();
@@ -45,8 +88,9 @@ export function Contact() {
       return;
     }
 
-    if (message.length < CONTACT_MESSAGE_MIN_LENGTH) {
-      toast.error(`Message must be at least ${CONTACT_MESSAGE_MIN_LENGTH} characters.`);
+    const messageValidationError = getMessageValidationError(message);
+    if (messageValidationError) {
+      toast.error(messageValidationError);
       return;
     }
 
@@ -85,8 +129,10 @@ export function Contact() {
 
       toast.success("Thanks - I'll get back to you shortly.");
       setForm({ name: "", email: "", message: "" });
-    } catch {
-      toast.error("Couldn't send your message. Please try again in a moment.");
+    } catch (error) {
+      console.error("EmailJS send failed", error);
+      toast.error(getEmailjsFailureMessage(error));
+      openMailFallback(name, email, message);
     } finally {
       setIsSubmitting(false);
     }
@@ -173,6 +219,7 @@ export function Contact() {
                   value={form.name}
                   onChange={(e) => setForm({ ...form, name: e.target.value })}
                   maxLength={100}
+                  required
                   className="w-full rounded-lg border border-border bg-background/60 px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground/60 focus:border-primary/60 focus:outline-none focus:ring-2 focus:ring-primary/20"
                   placeholder="Your name"
                 />
@@ -186,6 +233,7 @@ export function Contact() {
                   value={form.email}
                   onChange={(e) => setForm({ ...form, email: e.target.value })}
                   maxLength={255}
+                  required
                   className="w-full rounded-lg border border-border bg-background/60 px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground/60 focus:border-primary/60 focus:outline-none focus:ring-2 focus:ring-primary/20"
                   placeholder="you@example.com"
                 />
@@ -198,6 +246,8 @@ export function Contact() {
                   value={form.message}
                   onChange={(e) => setForm({ ...form, message: e.target.value })}
                   maxLength={1000}
+                  minLength={CONTACT_MESSAGE_MIN_LENGTH}
+                  required
                   rows={5}
                   className="w-full resize-none rounded-lg border border-border bg-background/60 px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground/60 focus:border-primary/60 focus:outline-none focus:ring-2 focus:ring-primary/20"
                   placeholder="Tell me about a role, an idea, or just say hi."
