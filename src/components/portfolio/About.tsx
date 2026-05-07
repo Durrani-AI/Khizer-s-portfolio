@@ -87,7 +87,7 @@ export function About() {
             <span className="text-foreground">01</span> — About Me
           </p>
           <h2 className="mt-4 max-w-3xl text-3xl font-semibold tracking-tight sm:text-4xl md:text-5xl">
-            <WordReveal text="Student by title. Developer by practice. Building scalable, real-world solutions." />
+            <WordReveal text=" Student by title. Developer by practice. Building scalable, real-world solutions." />
           </h2>
         
         </SectionReveal>
@@ -95,7 +95,7 @@ export function About() {
         <SectionReveal delay={120}>
           <p className="mt-8 max-w-3xl text-base leading-relaxed text-muted-foreground sm:text-lg">
             <WordReveal
-              text="Hi! My name is Khizer Ahmed Durrani. A Computer Science student at Middlesex University London who treats academia as a launchpad, not a waiting room. I specialize in end-to-end development, architecting robust backend systems while consistently going the extra mile on the frontend to craft exceptional, pixel-perfect UI/UX. I thrive in fast-paced environments, turning complex problems into deployed, high-impact solutions swiftly."
+              text=" Hi! My name is Khizer Ahmed Durrani. A Computer Science student at Middlesex University London who treats academia as a launchpad, not a waiting room. I specialize in end-to-end development, architecting robust backend systems while consistently going the extra mile on the frontend to craft exceptional, pixel-perfect UI/UX. I thrive in fast-paced environments, turning complex problems into deployed, high-impact solutions swiftly."
               stagger={25}
             />
           </p>
