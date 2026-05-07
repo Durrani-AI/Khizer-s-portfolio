@@ -101,7 +101,7 @@ export function Projects() {
 
         <SectionReveal delay={100}>
           <p className="mx-auto mt-5 max-w-xl text-center text-sm text-muted-foreground">
-            Click any screenshot to open the live project.
+            Click to open the following projects.
           </p>
         </SectionReveal>
 
